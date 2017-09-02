@@ -4,13 +4,13 @@ using namespace std;
  void tic_tac_toe_board()
  {
      cout<<"  |  |  "<<endl;
-     cout<<" "<<box[1]<<"| "<<box[2]<<"| "<<box[3]<<endl;
+     cout<<" "<<box[7]<<"| "<<box[8]<<"| "<<box[9]<<endl;
      cout<<"__|__|__"<<endl;
      cout<<"  |  |  "<<endl;
      cout<<" "<<box[4]<<"| "<<box[5]<<"| "<<box[6]<<endl;
      cout<<"__|__|__"<<endl;
      cout<<"  |  |  "<<endl;
-     cout<<" "<<box[7]<<"| "<<box[8]<<"| "<<box[9]<<endl;
+     cout<<" "<<box[1]<<"| "<<box[2]<<"| "<<box[3]<<endl;
      cout<<"  |  |  "<<endl;
  }
 int game_status()
@@ -20,6 +20,8 @@ int game_status()
      else if(((box[4]==box[5]&&box[5]!=' ')&&(box[5]==box[6]&&box[5]!=' '))||((box[2]==box[5]&&box[2]!=' ')&&(box[5]==box[8]&&box[5]!=' ')))
         return 1;
      else if(((box[7]==box[8]&&box[7]!=' ')&&(box[8]==box[9]&&box[8]!=' '))||((box[3]==box[6]&&box[3]!=' ')&&(box[6]==box[9]&&box[6]!=' ')))
+        return 1;
+     else if(((box[7]==box[5]&&box[7]!=' ')&&(box[5]==box[3]&&box[5]!=' '))||((box[9]==box[5]&&box[5]!=' ')&&(box[5]==box[1]&&box[5]!=' ')))
         return 1;
      else if(box[1]!=' '&&box[2]!=' '&&box[3]!=' '&&box[4]!=' '&&box[5]!=' '&&box[6]!=' '&&box[7]!=' '&&box[8]!=' '&&box[9]!=' ')
         return 0;
@@ -37,18 +39,25 @@ int game_status()
   cin>>p1;
   cout<<" enter player 2's choice "<<endl;
   cin>>p2;
-  int i,player=1,Move;
+  int i,player=1;
+  int c=0;
+  system("CLS");
+  char Move;
   do{
          tic_tac_toe_board();
     player=(player%2==0)? 2:1;
     cout<<" player "<<player<<" enter box no. "<<endl;
     cin>>Move;
     sym=(player==1)? p1:p2;
-    if((box[Move]!='x')||(box[Move]!='o'))
-       box[Move]=sym;
+    if(Move>=49&&Move<=58){
+    if((box[Move-48]!='x')||(box[Move-48]!='o')){
+            system("CLS");
+       box[Move-48]=sym;}
+    }
     else
-    {
+    {    system("CLS");
         cout<<" invalid Move "<<endl;
+        c=1;
         player--;
     }
     i=game_status();
